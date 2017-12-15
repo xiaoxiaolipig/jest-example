@@ -32,6 +32,10 @@ it('factorial(-10) should throw an error', () => {
   expect(() => factorial(-10)).toThrow();
 });
 
+it('factorial(42.1) should throw an error', () => {
+  expect(() => factorial(42.1)).toThrow();
+});
+
 it('factorial(NaN) should throw an error', () => {
   expect(() => factorial(NaN)).toThrow();
 });
