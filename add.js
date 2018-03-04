@@ -5,7 +5,7 @@ module.exports = function add(a, b) {
     throw new TypeError('add(): arguments must be numbers');
   }
   if (!isFinite(a) || !isFinite(b)) {
-    throw new Error('add(): arguments must be finite numbers');
+    throw new RangeError('add(): arguments must be finite numbers');
   }
   return a + b;
 };
