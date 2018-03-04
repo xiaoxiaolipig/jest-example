@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^4.13.1",
+    "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
     "jest": "^21.2.1"
   }
