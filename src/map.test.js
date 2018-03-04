@@ -1,6 +1,6 @@
 'use strict';
 
-const map = require('../map');
+const map = require('./map');
 
 describe('map()', () => {
   [true, false, 42, 'foo', {}, null, undefined].forEach(value => {

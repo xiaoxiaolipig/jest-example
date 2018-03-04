@@ -1,6 +1,6 @@
 'use strict';
 
-const sum = require('../sum');
+const sum = require('./sum');
 
 it('sum() without arguments should return 0', () => {
   expect(sum()).toBe(0);

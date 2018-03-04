@@ -1,6 +1,6 @@
 'use strict';
 
-const add = require('../add');
+const add = require('./add');
 
 [true, false, 'foo', [], {}, null, undefined].forEach(value => {
   it(`add(${JSON.stringify(value)}, 42) should throw a TypeError`, () => {

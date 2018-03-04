@@ -1,6 +1,6 @@
 'use strict';
 
-const divide = require('../divide');
+const divide = require('./divide');
 
 it('divide(42, 2) should return 21', () => {
   expect(divide(6, 3)).toBe(2);

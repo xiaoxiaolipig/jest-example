@@ -1,6 +1,6 @@
 'use strict';
 
-const factorial = require('../factorial');
+const factorial = require('./factorial');
 
 describe('factorial() with nonnumeric argument', () => {
   [true, 'foo', [], {}, null, undefined].forEach(value => {

@@ -1,4 +1,4 @@
-const forEach = require('../forEach');
+const forEach = require('./forEach');
 
 describe('forEach() with incorrect argument type', () => {
   [true, false, 42, 'foo', {}, null, undefined].forEach((value) => {
