@@ -1,3 +1,5 @@
+'use strict';
+
 const forEach = require('./forEach');
 
 describe('forEach() with incorrect argument type', () => {
