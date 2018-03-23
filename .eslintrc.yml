@@ -1,9 +1,12 @@
-parserOptions:
-  ecmaVersion: 6
 env:
   browser: true
-  jest: true
-  node: true
+  es6: true
+  commonjs: true
+overrides:
+  - files: src/*.test.js
+    env:
+      jest: true
+      node: true
 extends: eslint:recommended
 rules:
   strict:
