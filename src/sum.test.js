@@ -8,7 +8,7 @@ describe('state verification (classical testing)', () => {
   });
 
   it('sum(1) should return 1', () => {
-    expect(sum(42)).toBe(42);
+    expect(sum(1)).toBe(1);
   });
 
   it('sum(1, 2) should return 3', () => {
@@ -35,6 +35,6 @@ describe('behavior verification (mockist testing)', () => {
 
   it('sum() should call Array.prototype.reduce(add)', () => {
     sum();
-    expect(Array.prototype.reduce).toBeCalledWith(add);
+    expect(Array.prototype.reduce).toHaveBeenCalledWith(add);
   });
 });
