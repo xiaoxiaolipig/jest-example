@@ -7,6 +7,10 @@ node_js:
   - 7
   - 6
 
+os:
+  - linux
+  - osx
+
 before_install:
   - npm i -g npm      # upgrade npm to the latest version
 
