@@ -32,7 +32,7 @@ module.exports = function random() {
     } else if (!isFinite(start) || !isFinite(end)) {
       throw new RangeError('random(start, end): start and end must be finite numbers');
     } else if (start >= end) {
-      throw new RangeError('random(start, end): start must be less than end');
+      throw new RangeError('random(start, end): start must be smaller than end');
     } else if (end <= 0) {
       throw new RangeError('random(start, end): end must be a greater than 0');
     }

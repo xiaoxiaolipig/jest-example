@@ -6,42 +6,25 @@ let savedRandom = null;
 
 beforeEach(() => {
   savedRandom = Math.random;
-  Math.random = () => 0.5;
+  Math.random = jest.fn(() => 0.5);
 });
 
 afterEach(() => {
   Math.random = savedRandom;
 });
 
-describe.skip('random()', () => {
-  it('should return an evenly distributed random number within [0, 1)', () => {
-    const frequencies = new Array(10);
-    frequencies.fill(0);
+describe('random()', () => {
+  it('should call Math.random()', () => {
+    random();
+    expect(Math.random).toHaveBeenCalled();
+  });
 
-    const TOTAL = 100000;
-    const TOLERANCE_RATE = 0.05;
-
-    for (let i = 0; i < TOTAL; i++) {
-      const value = random();
-      expect(value).toBeGreaterThanOrEqual(0);
-      expect(value).toBeLessThan(1);
-      const index = Math.floor(value / 0.1);
-      ++frequencies[index];
-    }
-
-    for (let i = 0; i < frequencies.length; i++) {
-      // const start = (i * 0.1).toPrecision(1);
-      // const end = ((i + 1) * 0.1).toPrecision(1);
-      // console.log(`${start} - ${end}: ${frequencies[i]}`);
-      const errorRate = Math.abs((frequencies[i] * 10 / TOTAL) - 1);
-      expect(errorRate).toBeLessThan(TOLERANCE_RATE);
-    }
+  it('should return Math.random()', () => {
+    expect(random()).toBe(0.5);
   });
 });
 
 describe('random(end)', () => {
-  const end = 1000;
-
   [true, false, 'foo', [], {}, null, undefined].forEach(value => {
     it(`random(${JSON.stringify(value)}) should throw a TypeError`, () => {
       expect(() => random(value)).toThrow(TypeError);
@@ -54,29 +37,56 @@ describe('random(end)', () => {
     });
   });
 
-  it(`random(${end}) should return an evenly distributed random number within [0, ${end})`, () => {
-    expect(random(end)).toBe(end * 0.5);
+  it('random(1) should return Math.random() * 0.1', () => {
+    expect(random(0.1)).toBe(0.05);
+  });
+
+  it('random(1) should return Math.random() * 1', () => {
+    expect(random(1)).toBe(0.5);
+  });
+
+  it('random(10) should return Math.random() * 10', () => {
+    expect(random(10)).toBe(5);
+  });
+
+  it('random(100) should return Math.random() * 100', () => {
+    expect(random(100)).toBe(50);
   });
 });
 
 describe('random(start, end)', () => {
-  const start = 1000;
-  const end = 2000;
-
-  [end, NaN, Infinity, -Infinity].forEach(arg1 => {
-    [start, NaN, Infinity, -Infinity].forEach(arg2 => {
-      it(`random(${arg1}, ${arg2}) should throw a RangeError`, () => {
-        expect(() => random(arg1, arg2)).toThrow(RangeError);
+  [0, true, false, 'foo', [], {}, null, undefined].forEach(start => {
+    [1, true, false, 'foo', [], {}, null, undefined].forEach(end => {
+      if (typeof start === 'number' && typeof end === 'number' && start < end) {
+        return;
+      }
+      it(`random(${JSON.stringify(start)}, ${JSON.stringify(end)}) should throw a TypeError`, () => {
+        expect(() => random(start, end)).toThrow(TypeError);
       });
     });
   });
 
-  it(`random(${-end}, ${-start}) should throw a RangeError`, () => {
-    expect(() => random(-end, -start)).toThrow(RangeError);
+  [1, NaN, Infinity, -Infinity].forEach(start => {
+    [0, NaN, Infinity, -Infinity].forEach(end => {
+      it(`random(${start}, ${end}) should throw a RangeError`, () => {
+        expect(() => random(start, end)).toThrow(RangeError);
+      });
+    });
   });
 
-  it(`random(${start}, ${end}) should return an evenly distributed random number within [${start}, ${end})`, () => {
-    const value = random(start, end);
-    expect(value).toBe(start + (end - start) * 0.5);
+  it(`random(-10, 0) should throw a RangeError`, () => {
+    expect(() => random(-10, 0)).toThrow(RangeError);
+  });
+
+  it(`random(-20, -10) should throw a RangeError`, () => {
+    expect(() => random(-20, -10)).toThrow(RangeError);
+  });
+
+  it('random(a, b, c) should throw an error', () => {
+    expect(() => random(1, 2, 3)).toThrow(Error);
+  });
+
+  it('random(start, end) should return Math.random() * (end - start) + start', () => {
+    expect(random(10, 20)).toBe(15);
   });
 });
