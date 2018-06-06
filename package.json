@@ -10,7 +10,9 @@
   "jest": {
     "collectCoverage": true
   },
-  "eslintIgnore": ["/coverage/"],
+  "eslintIgnore": [
+    "/coverage/"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
