@@ -1,5 +1,5 @@
 'use strict';
-// 
+//  cherry-pick
 module.exports = function add(a, b) {
   if (typeof a !== 'number' || typeof b !== 'number') {
     throw new TypeError('add(): arguments must be numbers');
@@ -7,6 +7,9 @@ module.exports = function add(a, b) {
   return a + b;
 };
 
+// module.exports = function mohan(a ){
+//   return a;
+// }
 // # Find and copy the commit hash that you want to send to another branch
 // git log
 
