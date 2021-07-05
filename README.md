@@ -30,3 +30,4 @@ example:
 ```shell
 $ npm test -- --watch
 ```
+https://dev.to/matthewmcgarvey/github-pull-requests-with-screenshots-tip-1cbb
