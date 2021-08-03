@@ -4,7 +4,7 @@ This repository contains some examples to demonstrate the use of [Jest](https://
 
 ## Installation
 
-Clone the repository and run the following command:
+Clone the repository and run the following command::
 
 ```shell
 $ npm install
